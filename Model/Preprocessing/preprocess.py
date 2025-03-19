@@ -1,9 +1,17 @@
 import pandas as pd
 # from imblearn.over_sampling import SMOTE
+import numpy as np
 from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 from sklearn.pipeline import Pipeline
+import re
+
+def string_validity(string):
+    if isinstance(string, str):
+        return bool(re.match(r'^[a-zA-Z\s]+$', string))
+    return False
 
 twitter_df = pd.read_csv('../../Data/Twitter_Data.csv')[:70000]
+twitter_df['clean_text'] = np.where(twitter_df['clean_text'].apply(string_validity), twitter_df['clean_text'], np.nan)
 twitter_df.dropna(inplace=True)
 X, y = twitter_df['clean_text'].copy(), twitter_df['category'].copy()
 
