@@ -1,12 +1,11 @@
 import pandas as pd
-import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report
 
-def sentiment_analysis_model(x, y, return_clf=True, test_size=0.20, seed=42):
+def sentiment_analysis_model(x, y, return_clf=True, test_size=0.20, seed=42, alpha=1):
 
-    clf = MultinomialNB()
+    clf = MultinomialNB(alpha=alpha)
     
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=test_size, random_state=seed)
 
@@ -24,5 +23,5 @@ def sentiment_analysis_model(x, y, return_clf=True, test_size=0.20, seed=42):
 reddit_df = pd.read_csv('../Data/Clean_Reddit_Data.csv')
 x, y = reddit_df.drop(columns=['category']).copy(), reddit_df['category'].copy()
 
-clf = sentiment_analysis_model(x, y)
+clf = sentiment_analysis_model(x, y, alpha=0.15)
 
