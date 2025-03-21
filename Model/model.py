@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report
 
-def sentiment_analysis_model(x, y, return_clf=True, test_size=0.20, seed=42,):
+def sentiment_analysis_model(x, y, return_clf=True, test_size=0.20, seed=42):
 
     clf = MultinomialNB()
     
