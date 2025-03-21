@@ -17,7 +17,7 @@ def sentiment_analysis_model(x, y, return_clf=True, test_size=0.20, seed=42,):
 
     clf_report = classification_report(y_test, y_prediction)
 
-    print('Sentiment Analysis Report: {clf_report}')
+    print(f'Sentiment Analysis Report: {clf_report}')
 
     if return_clf:
         return clf
